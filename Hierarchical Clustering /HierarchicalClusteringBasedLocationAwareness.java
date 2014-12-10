@@ -192,9 +192,9 @@ class HierarchicalClusteringBasedLocationAwareness {
 				JSONArray val = new JSONArray();
 				ArrayList<String> value = clusters.get(key);
 				for(int i = 0; i < value.size(); ++i) {
-					if(value.size() - 1 == i) {
+					// if(value.size() - 1 == i) {
 						val.add(value.get(i));
-					}
+					// }
 				}
 				jVal.add(val);
 			}
