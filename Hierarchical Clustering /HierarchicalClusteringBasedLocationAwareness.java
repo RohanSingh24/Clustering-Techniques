@@ -185,7 +185,7 @@ class HierarchicalClusteringBasedLocationAwareness {
 		JSONArray jVal = new JSONArray();
 		FileWriter fw = null;
 		try {
-			fw = new FileWriter("fileName");
+			fw = new FileWriter(fileName);
 			while(keys.hasMoreElements()) {
 				String key = keys.nextElement();
 				jKey.add(key);
@@ -205,5 +205,41 @@ class HierarchicalClusteringBasedLocationAwareness {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public String[] toplocation(int n) throws Exception //used to find top locations of given cluster
+	{
+		String r[]=new String[n];
+		JSONObject ob1=new JSONObject();
+		for(int i=0;i<n;i++)
+		r[i]=" ";
+		int i=0,m=0;	
+		for(int j=0;j<n;j++) {
+			m=0;
+			Enumeration<String> names = clusters.keys();
+			while(names.hasMoreElements()) {
+				String str = (String) names.nextElement();	
+				if(m==0){
+					i=clusters.get(str).size();
+					r[j]=str;
+					m++;
+				}
+				if(i<clusters.get(str).size()) {
+					i=clusters.get(str).size();
+					r[j]=str;
+				}
+			} 
+			clusters.remove(r[j]);
+		}
+		JSONArray val2=new JSONArray();
+		for(int j=0;j<n;j++) {
+			String vs[]=r[j].split(", ");
+			vs[0]=vs[0].substring(1,vs[0].length()-1);
+			vs[1]=vs[1].substring(1,vs[1].length()-1);
+			String ke=vs[0]+", "+vs[1];
+			val2.add(ke);
+		}
+		ob1.put("top",val2);
+		return r;
 	}
 }
