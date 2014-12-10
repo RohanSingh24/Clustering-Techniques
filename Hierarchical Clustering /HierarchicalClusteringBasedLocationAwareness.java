@@ -15,7 +15,7 @@ import org.json.simple.parser.JSONParser;
 
 
 
-class HierarchicalClusteringBasedLocationAwareness {
+class HierarchicalAgglomerativeClusteringBasedLocationAwareness {
 	
 	final static double R = 6372.8; // In kilometers
 	private Hashtable<String, ArrayList<String>> clusters = new Hashtable<String, ArrayList<String>>();
